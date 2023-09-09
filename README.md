@@ -1,1 +1,1 @@
-# CS514
+# CS514 All Labs Summary.
