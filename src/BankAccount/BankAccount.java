@@ -1,11 +1,13 @@
+package BankAccount;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 /**
- * 1. Modify your BankAccount class so that it implements Comparable<BankAccount>
+ * 1. Modify your BankAccount.BankAccount class so that it implements Comparable<BankAccount.BankAccount>
  *    Add code in the main that compares two bank accounts using compareTo,
- *    and add code in the main that creates a list of three BankAccount objects,
+ *    and add code in the main that creates a list of three BankAccount.BankAccount objects,
  *    sorts them, and prints the sorted list.
  */
 
@@ -78,7 +80,7 @@ public class BankAccount implements Comparable<BankAccount>, Measurable{
             System.out.println(bankAccount.balance);
         }
 
-        // Measurable Implementation
+        // BankAccount.Measurable Implementation
         List<Measurable> list2 = new ArrayList<>();
         list2.add(new BankAccount(550.0f, rate));
         list2.add(new BankAccount(150.0f, rate));
