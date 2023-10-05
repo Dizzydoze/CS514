@@ -8,10 +8,10 @@ public class IntArray {
     private int size;
 
     /**
-     * sets up an internal array of size 10
+     * sets up an internal array of size 5
      */
     public IntArray(){
-        this.capacity = 10;
+        this.capacity = 5;
         this.size = 0;
         this.arr = new int[this.capacity];
     }
@@ -40,13 +40,12 @@ public class IntArray {
             }
             // add new element
             doubleArr[this.size] = x;
-            this.size ++;
             this.arr = doubleArr;
         }
         else {
             this.arr[this.size] = x;
-            this.size ++;
         }
+        this.size ++;
     }
 
     /**
@@ -55,18 +54,40 @@ public class IntArray {
      * If index is larger than the capacity of the internal array,
      * grow the array so that it is big enough (double its capacity, at least)
      */
+    private void reArrange(int index, int newCapacity, int x){
+        int[] newArray = new int[newCapacity * 2];
+        if (index > newCapacity){
+            for (int i = 0; i < this.size; i++) {
+                newArray[i] = this.arr[i];
+            }
+        }
+        else{
+            // pointers
+            int p = 0;
+            int newP = 0;
+            while (newP < this.size + 1){
+                if (newP == index){
+                    newArray[newP] = x;
+                }
+                else{
+                    newArray[newP] = this.arr[p];
+                    p ++;
+                }
+                newP ++;
+            }
+        }
+        newArray[index] = x;
+        this.arr = newArray;
+        this.capacity = this.arr.length;
+    }
+
+
     public void add(int index, int x){
-        if (this.size + 1 > this.capacity){
-            int[] doubleArr = new int[this.capacity * 2];
-            for (int i = this.size; i > index ; i--) {
-                doubleArr[i] = this.arr[i-1];
-            }
-            doubleArr[index] = x;
-            for (int j = 0; j < index; j++) {
-                doubleArr[j] = this.arr[j];
-            }
-            this.arr = doubleArr;
-            this.capacity = this.arr.length;
+        if (index >= this.capacity) {
+            this.reArrange(index, index, x);
+        }
+        else if (this.size + 1 > this.capacity){
+            this.reArrange(index, this.capacity, x);
         }
         else{
             // shift all elements from the back
@@ -95,9 +116,10 @@ public class IntArray {
      */
     public void delete(int index){
         assert index < this.capacity && index > 0;
-        for (int i = index; i < this.size - 2; i++) {
+        for (int i = index; i < this.size - 1; i++) {
             this.arr[i] = this.arr[i + 1];
         }
+        this.arr[this.size - 1] = 0;
         this.size --;
     }
 
@@ -131,18 +153,22 @@ public class IntArray {
 
     public static void main(String[] args) {
         IntArray intArray = new IntArray();
-        IntArray intArray2 = new IntArray(15);
+        IntArray intArray2 = new IntArray(10);
         System.out.println(intArray + "[Default Capacity]");
         System.out.println(intArray2 + "[Custom Capacity]");
         Random rand = new Random();
-        for (int i = 0; i < 10; i++) {
-            int randInt = rand.nextInt(1000);
+        for (int i = 0; i < 5; i++) {
+            int randInt = rand.nextInt(10, 100);
             intArray.add(randInt);
+            intArray2.add(randInt);
         }
         System.out.println(intArray + "[Initial Add]");
         // add index resize
         intArray.add(2, 66666);
         System.out.println(intArray + "[Add Index Resize]");
+        // add index out of boundary resize
+        intArray2.add(10, 88888);
+        System.out.println(intArray2 + "[Add Index Out of Capacity Resize]");
         // normal add
         intArray.add(999);
         System.out.println(intArray + "[Normal Add]");
