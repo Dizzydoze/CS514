@@ -1,5 +1,7 @@
 package QAInheritance;
 
+import java.util.ArrayList;
+
 public class ChoiceQA extends QA {
     ArrayList<String> choices = new ArrayList<String>();
 
