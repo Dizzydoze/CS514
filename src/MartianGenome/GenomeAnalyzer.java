@@ -82,7 +82,7 @@ public class GenomeAnalyzer {
      * @param args
      */
     public static void main(String args[]){
-        GenomeAnalyzer gSequencer= new GenomeAnalyzer("test.txt");
+        GenomeAnalyzer gSequencer= new GenomeAnalyzer("/Users/single/workspaces/CS514-Labs/src/MartianGenome/test.txt");
 
         if (gSequencer.validCode()){
             System.out.println("valid DNA");

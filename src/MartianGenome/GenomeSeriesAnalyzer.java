@@ -42,7 +42,7 @@ public class GenomeSeriesAnalyzer extends GenomeAnalyzer{
 
     public static void main(String[] args) {
         // create analyzer to read files and save to buffer
-        GenomeSeriesAnalyzer genomeSeriesAnalyzer = new GenomeSeriesAnalyzer("/Users/single/workspaces/CS514-Labs/src/test.txt");
+        GenomeSeriesAnalyzer genomeSeriesAnalyzer = new GenomeSeriesAnalyzer("/Users/single/workspaces/CS514-Labs/src/MartianGenome/test.txt");
 
         // add detectors into list
         GeniusDetector geniusDetector = new GeniusDetector();
