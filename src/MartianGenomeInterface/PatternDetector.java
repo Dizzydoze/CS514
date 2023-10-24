@@ -1,4 +1,4 @@
-package MartianGenome;
+package MartianGenomeInterface;
 
 
 public interface PatternDetector {

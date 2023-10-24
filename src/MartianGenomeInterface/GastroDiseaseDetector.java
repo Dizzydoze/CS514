@@ -1,4 +1,4 @@
-package MartianGenome;
+package MartianGenomeInterface;
 
 /**
  * detectGastroDisease - a martian has gastro disease if it contains a string that begins with G,

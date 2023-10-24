@@ -1,4 +1,4 @@
-package MartianGenome;
+package MartianGenomeInterface;
 
 /**
  * detectGenius -- a martian is a genius if it has the string, “GAGA” anywhere in its genome.

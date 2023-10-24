@@ -1,12 +1,7 @@
-package MartianGenome;
+package MartianGenomeAbstract;
 
-/**
- * detectRepeater - a martian who tends to repeat his words can be detected if,
- * anywhere in his genome, the letter G is repeated five times in a row.
- * findSimpleSequence can be used here,
- * and you should define the constructor with parameters so that it can be used for other repeat sequences.
- */
-public class RepeaterDetector implements PatternDetector{
+public class RepeaterDetector extends PatternDetector{
+
     int count;
     char letter;
 
@@ -14,12 +9,13 @@ public class RepeaterDetector implements PatternDetector{
         this.count = count;
         this.letter = letter;
     }
+
     @Override
-    public int detect(GenomeAnalyzer analyzer) {
+    public int detect(String buffer) {
         int cnt = 0;
         int start;
-        for (int i = 0; i < analyzer.buffer.length(); i++) {
-            if (analyzer.buffer.charAt(i) == this.letter){
+        for (int i = 0; i < buffer.length(); i++) {
+            if (buffer.charAt(i) == this.letter){
                 start = i;  // save the start of the matched char
                 cnt += 1;   // add up count
             }
@@ -41,6 +37,6 @@ public class RepeaterDetector implements PatternDetector{
 
     @Override
     public String additionalInfo() {
-        return "Repeat Letter: " + this.letter + " | " + "Repeat Count: " + this.count;
+        return "Repeat Letter: " + this.letter + " | " + "Repeat Count: " + this.count + '\n';
     }
 }
