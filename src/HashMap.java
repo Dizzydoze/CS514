@@ -47,9 +47,17 @@ public class HashMap {
      */
     public void put(String key, Object value){
         int address = this.hashcode(key);    // get the address of the new key
-        LinkedList<HashEntry> linkedList = this.buckets.get(address);
-        HashEntry entry = new HashEntry(key, value);
-        linkedList.addLast(entry);
+        LinkedList<HashEntry> bucket = this.buckets.get(address);
+        // loop through the linkedlist to see if the key already exists
+        for (HashEntry entry: bucket){
+            if (Objects.equals(entry.key, key)){
+                // update the value and return
+                entry.value = value;
+                return;
+            }
+        }
+        // no duplicate keys, create new entry and added to the linkedlist
+        bucket.addLast(new HashEntry(key, value));
     }
 
     /**
@@ -100,6 +108,8 @@ public class HashMap {
         hashmap.put("周", "zhou");
         hashmap.put("吴", "wu");
         hashmap.put("郑", "zheng");
+        hashmap.put("王", "wang");
+        hashmap.put("王", "wong");
         hashmap.put("王", "wang");
 
         //Calls get a few times to show it works
